@@ -1,6 +1,8 @@
 package com.generation.opticvbeckend.model.entities;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class User extends BaseEntity
@@ -10,6 +12,10 @@ public class User extends BaseEntity
     private String email;
     private String password;
 
+
+    //relationship
+    @OneToMany(mappedBy = "User", cascade = CascadeType.ALL)
+    private List<CV> curriculum;
 
     public String getName() {
         return name;

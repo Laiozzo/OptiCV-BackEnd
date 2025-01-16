@@ -7,8 +7,9 @@ public class User extends BaseEntity
 {
     private String name;
     private String surname;
+    private String username;
     private String email;
-    private String password;
+    private String hashedPassword;
 
 
     public String getName() {
@@ -35,11 +36,17 @@ public class User extends BaseEntity
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getHashedPassword() {return hashedPassword;}
+
+    public void setHashedPassword(String hashedPassword) {this.hashedPassword = hashedPassword;}
+
+    public String getUsername()
+    {
+        return username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUsername(String username)
+    {
+        this.username = username;
     }
 }

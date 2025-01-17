@@ -11,27 +11,19 @@ public class CV extends BaseEntity
     private User user;
 
     private String name;
-    private String surname;
-    private String city;
-    private String country;
     private String gender;
     private String contactDetails;
     private String education;
     private String workExperience;
     private String skills;
-    private String patent;
 
     public CV(String name, String surname, String city, String country, String gender, String contactDetails, String education, String workExperience, String skills, String patent) {
         this.name = name;
-        this.surname = surname;
-        this.city = city;
-        this.country = country;
         this.gender = gender;
         this.contactDetails = contactDetails;
         this.education = education;
         this.workExperience = workExperience;
         this.skills = skills;
-        this.patent = patent;
     }
 
     public CV() {
@@ -47,30 +39,6 @@ public class CV extends BaseEntity
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     public String getGender() {
@@ -112,4 +80,16 @@ public class CV extends BaseEntity
     public void setSkills(String skills) {
         this.skills = skills;
     }
+
+    @Override
+    public String toString() {
+        return "CV {" +
+                "\n Name: " + name +
+                "\n Contact Details: " + contactDetails +
+                "\n Education: " + education +
+                "\n Work Experience: " + workExperience +
+                "\n Skills: " + skills +
+                "\n}";
+    }
+
 }

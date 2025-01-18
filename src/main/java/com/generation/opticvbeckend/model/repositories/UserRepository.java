@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long>
 {
-	Optional<User> findByUsernameAndHashedPassword(String username, String passwordHashata);
+	Optional<User> findByUsername(String username);
 }

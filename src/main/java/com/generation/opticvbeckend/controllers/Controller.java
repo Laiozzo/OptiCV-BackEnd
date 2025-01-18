@@ -2,6 +2,8 @@ package com.generation.opticvbeckend.controllers;
 
 
 
+import com.generation.opticvbeckend.exceptions.InvalidPasswordException;
+import com.generation.opticvbeckend.exceptions.InvalidUsernameException;
 import com.generation.opticvbeckend.model.dto.UserDtoReqLogin;
 import com.generation.opticvbeckend.model.dto.UserDtoReqReg;
 import com.generation.opticvbeckend.model.dto.UserDtoResp;
@@ -22,43 +24,23 @@ public class Controller
 {
 
 	@Autowired
-	DTOConverter dtoConverter;
-	@Autowired
-	UserRepository uRepo;
-
+	CredentialService credentialService;
 
 	@PostMapping ("/register")
-	public UserDtoResp register (@RequestBody UserDtoReqReg dto)
-	{
-		User u= dtoConverter.convertInUser(dto);
-		u= uRepo.save(u);
-
-		return dtoConverter.convertInDtoResp(u);
-
+	public String register (@RequestBody UserDtoReqReg registerDto) {return credentialService.register(registerDto);
 	}
 
 	@PostMapping("/login")
-	public UserDtoResp login (@RequestBody UserDtoReqLogin dto)
-	{
-		String passwordHashata = DigestUtils.md5Hex(dto.getPassword()).toUpperCase();
-
-		Optional<User> u = uRepo.findByUsernameAndHashedPassword(dto.getUsername(), passwordHashata);
-
-		if(u.isPresent())
-			return dtoConverter.convertInDtoResp(u.get());
-		else
-			throw new RuntimeException("Username or password incorrect");
-	}
-
+	public String login (@RequestBody UserDtoReqLogin loginDto) {return credentialService.login(loginDto);}
 
 
 	@ExceptionHandler(RuntimeException.class)
-	@ResponseStatus(HttpStatus.UNAUTHORIZED)
-	public String gestisciUtenteNonGiusto(RuntimeException e)
-	{
-		return e.getMessage();
-	}
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public String gestisciEccezioneUsurname(InvalidUsernameException e) {return e.getMessage();}
 
+	@ExceptionHandler(RuntimeException.class)
+	@ResponseStatus(HttpStatus.FORBIDDEN)
+	public String gestisciEccezionePassword(InvalidPasswordException e) {return e.getMessage();}
 
 
 }

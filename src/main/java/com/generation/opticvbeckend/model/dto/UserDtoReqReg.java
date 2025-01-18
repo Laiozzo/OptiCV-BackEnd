@@ -7,6 +7,8 @@ public class UserDtoReqReg
 	private String username;
 	private String password;
 	private String email;
+	private int age;
+	private String gender;
 
 	public String getUsername()
 	{
@@ -33,10 +35,7 @@ public class UserDtoReqReg
 		return email;
 	}
 
-	public void setEmail(String email)
-	{
-		this.email = email;
-
+	public void setEmail(String email) {this.email = email;
 	}
 
 	public String getName()
@@ -58,5 +57,13 @@ public class UserDtoReqReg
 	{
 		this.surname = surname;
 	}
+
+	public int getAge() {return age;}
+
+	public void setAge(int age) {this.age = age;}
+
+	public String getGender() {return gender;}
+
+	public void setGender(String gender) {this.gender = gender;}
 }
 

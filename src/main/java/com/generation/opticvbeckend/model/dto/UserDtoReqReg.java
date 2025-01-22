@@ -1,5 +1,7 @@
 package com.generation.opticvbeckend.model.dto;
 
+import java.time.LocalDate;
+
 public class UserDtoReqReg
 {
 	private String name;
@@ -7,7 +9,7 @@ public class UserDtoReqReg
 	private String username;
 	private String password;
 	private String email;
-	private int age;
+	private LocalDate dob;
 	private String gender;
 
 	public String getUsername()
@@ -58,9 +60,15 @@ public class UserDtoReqReg
 		this.surname = surname;
 	}
 
-	public int getAge() {return age;}
+	public LocalDate getDob()
+	{
+		return dob;
+	}
 
-	public void setAge(int age) {this.age = age;}
+	public void setDob(LocalDate dob)
+	{
+		this.dob = dob;
+	}
 
 	public String getGender() {return gender;}
 

@@ -2,6 +2,8 @@ package com.generation.opticvbeckend.model.entities;
 
 import jakarta.persistence.Entity;
 
+import java.time.LocalDate;
+
 @Entity
 public class User extends BaseEntity
 {
@@ -10,6 +12,8 @@ public class User extends BaseEntity
     private String username;
     private String email;
     private String hashedPassword;
+    private String gender;
+    private LocalDate dob;
 
 
     public String getName() {
@@ -48,5 +52,25 @@ public class User extends BaseEntity
     public void setUsername(String username)
     {
         this.username = username;
+    }
+
+    public String getGender()
+    {
+        return gender;
+    }
+
+    public void setGender(String gender)
+    {
+        this.gender = gender;
+    }
+
+    public LocalDate getDob()
+    {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob)
+    {
+        this.dob = dob;
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -25,6 +26,8 @@ public class Controller
 
 	@Autowired
 	CredentialService credentialService;
+	@Autowired
+	private UserRepository userRepository;
 
 	@PostMapping ("/register")
 	public String register (@RequestBody UserDtoReqReg registerDto) {return credentialService.register(registerDto);
@@ -33,6 +36,31 @@ public class Controller
 	@PostMapping("/login")
 	public String login (@RequestBody UserDtoReqLogin loginDto) {return credentialService.login(loginDto);}
 
+
+	@PutMapping
+	public User modify(@RequestBody UserDtoReqReg modifyDto)
+	{
+		User daModificare = RequestData.getUser();
+		//fagli fare la modifica
+		daModificare.setName(modifyDto.getName());
+		daModificare.setSurname(modifyDto.getSurname());
+		daModificare.setUsername(modifyDto.getUsername());
+		daModificare.setEmail(modifyDto.getEmail());
+		daModificare.setDob(modifyDto.getDob());
+		daModificare.setGender(modifyDto.getGender());
+		daModificare.setHashedPassword(modifyDto.getPassword());
+
+		return userRepository.save(daModificare);
+	}
+
+	@DeleteMapping
+	public Long delete()
+	{
+		User daCancellare = RequestData.getUser();
+		Long id=daCancellare.getId();
+		userRepository.delete(daCancellare);
+		return id;
+	}
 
 	@ExceptionHandler(RuntimeException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)

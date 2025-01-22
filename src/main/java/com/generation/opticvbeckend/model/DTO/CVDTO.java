@@ -1,4 +1,4 @@
-package com.generation.opticvbeckend.model.DTO;
+package com.generation.opticvbeckend.model.dto;
 
 public class CVDTO {
     private String name;

@@ -1,16 +1,22 @@
 package com.generation.opticvbeckend.model.entities;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User extends BaseEntity
 {
     private String name;
     private String surname;
-    private String username;
     private String email;
-    private String hashedPassword;
+    private String password;
 
+
+    //relationship
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<CV> curriculum = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -36,17 +42,11 @@ public class User extends BaseEntity
         this.email = email;
     }
 
-    public String getHashedPassword() {return hashedPassword;}
-
-    public void setHashedPassword(String hashedPassword) {this.hashedPassword = hashedPassword;}
-
-    public String getUsername()
-    {
-        return username;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUsername(String username)
-    {
-        this.username = username;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

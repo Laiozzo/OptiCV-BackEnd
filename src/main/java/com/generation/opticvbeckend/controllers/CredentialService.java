@@ -7,6 +7,7 @@ import com.generation.opticvbeckend.model.dto.UserDtoReqReg;
 import com.generation.opticvbeckend.model.entities.User;
 import com.generation.opticvbeckend.model.repositories.UserRepository;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -17,7 +18,10 @@ import java.util.Optional;
 public class CredentialService
 {
 
-	UserRepository uRepo;
+	@Autowired
+	private UserRepository uRepo;
+
+
 	public String login(UserDtoReqLogin loginDto)
 	{
 		Optional<User> u = uRepo.findByUsername(loginDto.getUsername());
@@ -44,20 +48,20 @@ public class CredentialService
 		return prefisso+"-"+user.getId()+"-"+suffisso;
 	}
 
-	public String register(UserDtoReqReg userDtoReqReg)
-	{
-		User user = new User();
+	public String register(UserDtoReqReg userDtoReqReg) {
+			User user = new User();
+			user.setUsername(userDtoReqReg.getUsername());
+			user.setEmail(userDtoReqReg.getEmail());
+			user.setGender(userDtoReqReg.getGender());
+			user.setName(userDtoReqReg.getName());
+			user.setSurname(userDtoReqReg.getSurname());
+			user.setDob(userDtoReqReg.getDob());
 
-		user.setUsername(userDtoReqReg.getUsername());
-		user.setEmail(userDtoReqReg.getEmail());
+			String passwordHashata = DigestUtils.md5Hex(userDtoReqReg.getPassword());
+			user.setHashedPassword(passwordHashata);
 
-		String passwordHashata = DigestUtils.md5Hex(userDtoReqReg.getPassword());
-		user.setHashedPassword(passwordHashata);
-
-		uRepo.save(user);
-
-
-		return "Registrazione effettuatata";
+			uRepo.save(user);
+			return "Registrazione effettuata";
 	}
 
 	public User getUserByToken(String token)

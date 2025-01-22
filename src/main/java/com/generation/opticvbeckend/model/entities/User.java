@@ -73,4 +73,18 @@ public class User extends BaseEntity
     {
         this.dob = dob;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", gender='" + gender + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", dob=" + dob +
+                ", hashedPassword='" + hashedPassword + '\'' +
+                '}';
+    }
 }

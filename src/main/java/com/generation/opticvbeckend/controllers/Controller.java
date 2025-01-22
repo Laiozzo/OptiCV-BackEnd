@@ -1,24 +1,16 @@
 package com.generation.opticvbeckend.controllers;
 
-
-
 import com.generation.opticvbeckend.automations.RequestData;
 import com.generation.opticvbeckend.exceptions.InvalidPasswordException;
 import com.generation.opticvbeckend.exceptions.InvalidUsernameException;
 import com.generation.opticvbeckend.model.dto.UserDtoReqLogin;
 import com.generation.opticvbeckend.model.dto.UserDtoReqReg;
-import com.generation.opticvbeckend.model.dto.UserDtoResp;
-import com.generation.opticvbeckend.model.entities.DTOConverter;
 import com.generation.opticvbeckend.model.entities.User;
 import com.generation.opticvbeckend.model.repositories.UserRepository;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -31,7 +23,7 @@ public class Controller
 	private UserRepository userRepository;
 
 	@PostMapping ("/register")
-	public String register (@RequestBody UserDtoReqReg registerDto) {return credentialService.register(registerDto);
+	public void register (@RequestBody UserDtoReqReg registerDto) { credentialService.register(registerDto);
 	}
 
 	@PostMapping("/login")

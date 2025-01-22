@@ -50,6 +50,10 @@ public class CredentialService
 
 		user.setUsername(userDtoReqReg.getUsername());
 		user.setEmail(userDtoReqReg.getEmail());
+		user.setGender(userDtoReqReg.getGender());
+		user.setName(userDtoReqReg.getName());
+		user.setSurname(userDtoReqReg.getSurname());
+		user.setDob(userDtoReqReg.getDob());
 
 		String passwordHashata = DigestUtils.md5Hex(userDtoReqReg.getPassword());
 		user.setHashedPassword(passwordHashata);

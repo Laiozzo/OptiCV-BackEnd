@@ -2,6 +2,7 @@ package com.generation.opticvbeckend.controllers;
 
 
 
+import com.generation.opticvbeckend.automations.RequestData;
 import com.generation.opticvbeckend.exceptions.InvalidPasswordException;
 import com.generation.opticvbeckend.exceptions.InvalidUsernameException;
 import com.generation.opticvbeckend.model.dto.UserDtoReqLogin;

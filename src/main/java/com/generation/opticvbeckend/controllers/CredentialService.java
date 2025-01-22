@@ -57,14 +57,11 @@ public class CredentialService
 		uRepo.save(user);
 
 
-		return "Register effettuato";
+		return "Registrazione effettuatata";
 	}
 
-	public User getUserByToken()
+	public User getUserByToken(String token)
 	{
-		ServletRequestAttributes req = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-
-		String token = req.getRequest().getHeader("token");
 		if(token == null)
 			throw new InvalidUsernameException("Token non valido");
 

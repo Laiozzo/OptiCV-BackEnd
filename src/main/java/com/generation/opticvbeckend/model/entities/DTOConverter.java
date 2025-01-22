@@ -27,6 +27,11 @@ public class DTOConverter
 		user.setUsername(dto.getUsername());
 		String passwordHashata = DigestUtils.md5Hex(dto.getPassword()).toUpperCase();
 		user.setHashedPassword(passwordHashata);
+		user.setEmail(dto.getEmail());
+		user.setGender(dto.getGender());
+		user.setDob(dto.getDob());
+		user.setName(dto.getName());
+		user.setSurname(dto.getSurname());
 		return user;
 	}
 

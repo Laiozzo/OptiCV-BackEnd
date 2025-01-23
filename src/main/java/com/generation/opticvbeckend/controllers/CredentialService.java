@@ -1,12 +1,16 @@
 package com.generation.opticvbeckend.controllers;
 
+import com.generation.opticvbeckend.automations.RequestData;
 import com.generation.opticvbeckend.exceptions.InvalidPasswordException;
 import com.generation.opticvbeckend.exceptions.InvalidUsernameException;
 import com.generation.opticvbeckend.model.dto.UserDtoReqLogin;
 import com.generation.opticvbeckend.model.dto.UserDtoReqReg;
+import com.generation.opticvbeckend.model.dto.UserProfileDto;
+import com.generation.opticvbeckend.model.entities.DTOConverter;
 import com.generation.opticvbeckend.model.entities.User;
 import com.generation.opticvbeckend.model.repositories.UserRepository;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -17,6 +21,9 @@ import java.util.Optional;
 public class CredentialService
 {
 
+	@Autowired
+	DTOConverter dtoConverter;
+	@Autowired
 	UserRepository uRepo;
 	public String login(UserDtoReqLogin loginDto)
 	{
@@ -50,6 +57,10 @@ public class CredentialService
 
 		user.setUsername(userDtoReqReg.getUsername());
 		user.setEmail(userDtoReqReg.getEmail());
+		user.setGender(userDtoReqReg.getGender());
+		user.setName(userDtoReqReg.getName());
+		user.setSurname(userDtoReqReg.getSurname());
+		user.setDob(userDtoReqReg.getDob());
 
 		String passwordHashata = DigestUtils.md5Hex(userDtoReqReg.getPassword());
 		user.setHashedPassword(passwordHashata);
@@ -57,14 +68,11 @@ public class CredentialService
 		uRepo.save(user);
 
 
-		return "Register effettuato";
+		return "Registrazione effettuatata";
 	}
 
-	public User getUserByToken()
+	public User getUserByToken(String token)
 	{
-		ServletRequestAttributes req = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-
-		String token = req.getRequest().getHeader("token");
 		if(token == null)
 			throw new InvalidUsernameException("Token non valido");
 
@@ -74,5 +82,10 @@ public class CredentialService
 			throw new InvalidUsernameException("Token non valido");
 
 		return u.get();
+	}
+
+	public UserProfileDto getProfile()
+	{
+		return dtoConverter.converterInUserProfileDto(RequestData.getUser());
 	}
 }

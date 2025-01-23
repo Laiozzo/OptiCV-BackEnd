@@ -32,7 +32,7 @@ public class Controller
 	public String login (@RequestBody UserDtoReqLogin loginDto) {return credentialService.login(loginDto);}
 
 
-	@PutMapping
+	@PutMapping("/myprofile")
 	public User modify(@RequestBody UserDtoReqReg modifyDto)
 	{
 		User daModificare = RequestData.getUser();
@@ -63,11 +63,11 @@ public class Controller
 		return credentialService.getProfile();
 	}
 
-	@ExceptionHandler(RuntimeException.class)
+	@ExceptionHandler(InvalidUsernameException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public String gestisciEccezioneUsurname(InvalidUsernameException e) {return e.getMessage();}
 
-	@ExceptionHandler(RuntimeException.class)
+	@ExceptionHandler(InvalidPasswordException.class)
 	@ResponseStatus(HttpStatus.FORBIDDEN)
 	public String gestisciEccezionePassword(InvalidPasswordException e) {return e.getMessage();}
 

@@ -23,16 +23,16 @@ public class GestisciToken implements Filter
 		{
 			HttpServletRequest request = (HttpServletRequest) servletRequest;
 
-			String token = request.getParameter("token");
+			String token = request.getHeader("Token");
 
 			if(token==null || token.isEmpty())
 				filterChain.doFilter(servletRequest, servletResponse);
 			else
 			{
-			User u = cs.getUserByToken(token);
+				User u = cs.getUserByToken(token);
 
-			RequestData.setUser(u);
-			filterChain.doFilter(servletRequest, servletResponse);
+				RequestData.setUser(u);
+				filterChain.doFilter(servletRequest, servletResponse);
 			}
 		}
 		finally

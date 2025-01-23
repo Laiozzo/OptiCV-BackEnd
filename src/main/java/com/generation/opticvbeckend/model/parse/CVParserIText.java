@@ -38,7 +38,8 @@ public class CVParserIText
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return filePath.toString();
+
+        return filePath;
     }
 
 

@@ -60,7 +60,6 @@ public class LlamaApiClient {
             e.printStackTrace();
             return "Errore durante la richiesta: " + e.getMessage();
         }
-
         return "Errore: risposta vuota o malformata.";
     }
 }

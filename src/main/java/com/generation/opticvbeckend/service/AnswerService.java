@@ -23,7 +23,7 @@ public class AnswerService {
     }
 
 
-    public List<Answer> processQuestions(String jobDescription) {
+    public List<String> processQuestions(String jobDescription) {
         String question2 = "Scannerizza il CV caricato e gli elementi all'interno e la job description salvata; mettili a paragone e crea un percentuale di rating che indichi quanto sono compatibili " + jobDescription;
 
         List<String> questions = List.of(
@@ -39,6 +39,7 @@ public class AnswerService {
                 "Dammi suggerimenti su come modificare il curriculum"
         );
         List<Answer> answerList = new ArrayList<>();
+        List<String> responses = new ArrayList<>();
 
         for(String question : questions) {
             List<Map<String, String>> messages = List.of(
@@ -53,11 +54,14 @@ public class AnswerService {
             Answer answer = new Answer(question, response);
             answerList.add(answer);
 
+
+            String responseCorrect = llamaApiClient.sendQuestion("meta-llama-3.1-8b-instruct", messages, 0.7);
+            responses.add(response);
             // Salva nel DB (opzionale)
             answerRepository.save(answer);
         }
 
-        return answerList;
+        return responses;
     }
 }
 

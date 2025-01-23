@@ -23,11 +23,13 @@ public class AnswerService {
     }
 
 
-    public List<String> processQuestions(String jobDescription) {
+    public List<String> processQuestions(String jobDescription, String cvParse) {
+
         String question2 = "Scannerizza il CV caricato e gli elementi all'interno e la job description salvata; mettili a paragone e crea un percentuale di rating che indichi quanto sono compatibili " + jobDescription;
+        String cv = "";
 
         List<String> questions = List.of(
-                "Con il CV che ti ho dato, dammi una review generale",
+                "Con il CV: ", cvParse, " che ti ho dato, dammi una review generale",
                 question2,
                 "Dammi solo il rating finale",
                 "Dammi la compatibilità delle Hard-Skill",

@@ -13,6 +13,9 @@ public class User extends BaseEntity
     private String email;
     private String password;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UploadedFile> uploadedFiles = new ArrayList<>();
+
 
     //relationship
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -32,6 +35,22 @@ public class User extends BaseEntity
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public List<UploadedFile> getUploadedFiles() {
+        return uploadedFiles;
+    }
+
+    public void setUploadedFiles(List<UploadedFile> uploadedFiles) {
+        this.uploadedFiles = uploadedFiles;
+    }
+
+    public List<CV> getCurriculum() {
+        return curriculum;
+    }
+
+    public void setCurriculum(List<CV> curriculum) {
+        this.curriculum = curriculum;
     }
 
     public String getEmail() {

@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.generation.opticvbeckend.model.entities.User;
-import org.springframework.web.servlet.support.RequestContext;
 
 import java.io.IOException;
 

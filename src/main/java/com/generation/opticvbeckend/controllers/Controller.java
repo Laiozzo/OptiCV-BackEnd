@@ -8,7 +8,6 @@ import com.generation.opticvbeckend.exceptions.InvalidUsernameException;
 import com.generation.opticvbeckend.model.dto.UserDtoReqLogin;
 import com.generation.opticvbeckend.model.dto.UserDtoReqReg;
 import com.generation.opticvbeckend.model.dto.UserDtoResp;
-import com.generation.opticvbeckend.model.dto.UserProfileDto;
 import com.generation.opticvbeckend.model.entities.DTOConverter;
 import com.generation.opticvbeckend.model.entities.User;
 import com.generation.opticvbeckend.model.repositories.UserRepository;
@@ -32,7 +31,7 @@ public class Controller
 	private UserRepository userRepository;
 
 	@PostMapping ("/register")
-	public String register (@RequestBody UserDtoReqReg registerDto) {return credentialService.register(registerDto);
+	public void register (@RequestBody UserDtoReqReg registerDto) { credentialService.register(registerDto);
 	}
 
 	@PostMapping("/login")

@@ -12,6 +12,7 @@ public class UserDtoReqReg
 	private LocalDate dob;
 	private String gender;
 
+
 	public String getUsername()
 	{
 		return username;

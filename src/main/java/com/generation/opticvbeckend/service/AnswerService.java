@@ -43,7 +43,7 @@ public class AnswerService {
 
         for(String question : questions) {
             List<Map<String, String>> messages = List.of(
-                    Map.of("role", "system", "content", "Always answer in rhymes."),
+                    Map.of("role", "system", "content", "You are a helpful assistant."),
                     Map.of("role", "user", "content", question)
             );
 

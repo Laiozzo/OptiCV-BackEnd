@@ -1,6 +1,6 @@
 package com.generation.opticvbeckend.mapper;
 
-import com.generation.opticvbeckend.model.DTO.CVDTO;
+import com.generation.opticvbeckend.model.dto.CVDTO;
 import com.generation.opticvbeckend.model.entities.CV;
 
 public class CVMapper {

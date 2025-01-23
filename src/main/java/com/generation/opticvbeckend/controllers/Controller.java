@@ -8,6 +8,7 @@ import com.generation.opticvbeckend.exceptions.InvalidUsernameException;
 import com.generation.opticvbeckend.model.dto.UserDtoReqLogin;
 import com.generation.opticvbeckend.model.dto.UserDtoReqReg;
 import com.generation.opticvbeckend.model.dto.UserDtoResp;
+import com.generation.opticvbeckend.model.dto.UserProfileDto;
 import com.generation.opticvbeckend.model.entities.DTOConverter;
 import com.generation.opticvbeckend.model.entities.User;
 import com.generation.opticvbeckend.model.repositories.UserRepository;
@@ -61,6 +62,12 @@ public class Controller
 		Long id=daCancellare.getId();
 		userRepository.delete(daCancellare);
 		return id;
+	}
+
+	@GetMapping( "/myprofile")
+	public UserProfileDto getProfile()
+	{
+		return credentialService.getProfile();
 	}
 
 	@ExceptionHandler(RuntimeException.class)

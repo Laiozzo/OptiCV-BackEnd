@@ -1,10 +1,13 @@
 package com.generation.opticvbeckend.model.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Lob;
 
 @Entity
 public class Answer extends BaseEntity {
+    @Lob
     String response;
+    @Lob
     String question;
 
     public Answer() {}

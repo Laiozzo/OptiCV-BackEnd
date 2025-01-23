@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,16 +41,26 @@ public class AnswerService {
         List<Answer> answerList = new ArrayList<>();
 
         for(String question : questions) {
-            String response = llamaApiClient.askLlamaApi(question);
+            List<Map<String, String>> messages = List.of(
+                    Map.of("role", "system", "content", "Always answer in rhymes."),
+                    Map.of("role", "user", "content", question)
+            );
+
+            // Invia la domanda al modello
+            String response = llamaApiClient.sendQuestion("model-identifier", messages, 0.7);
+
+            // Salva la risposta in una classe Answer
             Answer answer = new Answer(question, response);
             answerList.add(answer);
 
+            // Salva nel DB (opzionale)
             answerRepository.save(answer);
-
         }
+
         return answerList;
     }
-
 }
+
+
 
 

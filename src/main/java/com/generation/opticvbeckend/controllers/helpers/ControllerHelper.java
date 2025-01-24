@@ -9,4 +9,5 @@ public interface ControllerHelper {
     List<JobTypeDTO> getJobTypes();
     JobTypeDTO getJobType(long id);
 
+	JobTypeDTO saveJobType(JobTypeDTO jobTypeDTO);
 }

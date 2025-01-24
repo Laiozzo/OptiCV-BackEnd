@@ -1,14 +1,13 @@
 package com.generation.opticvbeckend.controllers;
 
 import com.generation.opticvbeckend.model.entities.Answer;
+import com.generation.opticvbeckend.model.entities.CV;
 import com.generation.opticvbeckend.service.AnswerService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -42,14 +41,24 @@ public class AnswerController
             "                \"Benefit: ticket, welfare\"";
     private final AnswerService answerService;
 
+
     public AnswerController(AnswerService answerService){
         this.answerService = answerService;
     }
 
     @GetMapping("answers")
     public ResponseEntity<List<String>> getAnswers() {
-        List<String> answers = answerService.processQuestions(message);
+        String cvParse="Contenuto CV caricato";
+        List<String> answers = answerService.processQuestions(message,cvParse);
         return ResponseEntity.ok(answers); // Restituisci le risposte come lista JSON
+    }
+
+    @PostMapping("answers")
+    public ResponseEntity<List<String>> getAnswers(@RequestBody Map<String, String> payload) {
+        String cvParse = payload.get("cvParse");
+        String jobDescription = message; // Puoi anche passare il messaggio
+        List<String> answers = answerService.processQuestions(jobDescription, cvParse);
+        return ResponseEntity.ok(answers);
     }
 //
 //    @PostMapping("/process")

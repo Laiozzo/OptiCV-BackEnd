@@ -35,4 +35,22 @@ public class ControllerHelperImp implements ControllerHelper
             System.out.println("Job type not found");
         return null;
     }
+
+    @Override
+    public JobTypeDTO saveJobType(JobTypeDTO jobTypeDTO)
+    {
+        JobType jobTypeEntity = new JobType();
+        jobTypeEntity.setDescription(jobTypeDTO.getDescription());
+
+        // Salva nel database
+        jobTypeEntity = jobrepo.save(jobTypeEntity);
+
+        // Converti l'entità salvata di nuovo in DTO
+        JobTypeDTO savedDTO = new JobTypeDTO();
+        savedDTO.setId(jobTypeEntity.getId());
+        savedDTO.setDescription(jobTypeEntity.getDescription());
+
+        return savedDTO;
+    }
+
 }

@@ -13,4 +13,12 @@ public class DTOConverter
         dto.setId(jobT.getId());
         return dto;
     }
+
+    public JobType toEntity(JobTypeDTO dto){
+        JobType jobT = new JobType();
+        jobT.setJobName(dto.getJobName());
+        jobT.setDescription(dto.getDescription());
+        jobT.setId(dto.getId());
+        return jobT;
+    }
 }

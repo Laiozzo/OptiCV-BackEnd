@@ -1,6 +1,5 @@
 package com.generation.opticvbeckend.controllers.helpers;
 
-import com.generation.opticvbeckend.configuration.LlamaApiClient;
 import com.generation.opticvbeckend.model.entities.UploadedFile;
 import com.generation.opticvbeckend.model.entities.User;
 import com.generation.opticvbeckend.model.parse.CVParserIText;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CvHelpers
+public class AnswerHelpers
 {
     @Autowired
     CVParserIText parser;

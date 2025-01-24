@@ -1,7 +1,8 @@
 package com.generation.opticvbeckend.model.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +11,11 @@ public class User extends BaseEntity
 {
     private String name;
     private String surname;
+    private String username;
     private String email;
-    private String password;
+    private String hashedPassword;
+    private String gender;
+    private LocalDate dob;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UploadedFile> uploadedFiles = new ArrayList<>();
@@ -48,11 +52,37 @@ public class User extends BaseEntity
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getHashedPassword() {return hashedPassword;}
+
+    public void setHashedPassword(String hashedPassword) {this.hashedPassword = hashedPassword;}
+
+    public String getUsername()
+    {
+        return username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+
+    public String getGender()
+    {
+        return gender;
+    }
+
+    public void setGender(String gender)
+    {
+        this.gender = gender;
+    }
+
+    public LocalDate getDob()
+    {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob)
+    {
+        this.dob = dob;
     }
 }

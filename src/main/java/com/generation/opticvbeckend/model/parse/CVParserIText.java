@@ -5,12 +5,12 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.kernel.pdf.canvas.parser.PdfTextExtractor;
 import org.apache.pdfbox.rendering.PDFRenderer;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-
+@Service
 public class CVParserIText
 {
-    String filePath = "path/to/file.pdf";
     PdfReader reader;
 
     public String pdfToString(String filePath) {
@@ -38,7 +38,8 @@ public class CVParserIText
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return filePath.toString();
+
+        return filePath;
     }
 
 

@@ -1,11 +1,17 @@
 package com.generation.opticvbeckend.model.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class UploadedFile extends BaseEntity {
     private String fileName;
     private String filePath;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
 
     //Getter and Setter:

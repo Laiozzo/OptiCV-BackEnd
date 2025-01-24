@@ -1,5 +1,6 @@
 package com.generation.opticvbeckend.controllers;
 
+import com.generation.opticvbeckend.automations.RequestData;
 import com.generation.opticvbeckend.model.entities.UploadedFile;
 import com.generation.opticvbeckend.model.parse.CVParserIText;
 import com.generation.opticvbeckend.model.repositories.UploadedFileRepository;
@@ -58,7 +59,7 @@ public class FileUploadController {
             uploadedFile.setFileName(fileName);
             uploadedFile.setFilePath(destinationFile.getAbsolutePath());
             uploadedFile.setParsedContent(parsedText); // Campo per il testo estratto (deve essere aggiunto nella tua entità)
-            uploadedFile.setUser(Request);
+            uploadedFile.setUser(RequestData.getUser());
             fileRepository.save(uploadedFile);
 
             // (Opzionale) Elimina il file temporaneo

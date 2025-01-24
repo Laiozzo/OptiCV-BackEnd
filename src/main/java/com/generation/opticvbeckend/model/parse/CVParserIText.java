@@ -14,12 +14,12 @@ public class CVParserIText
     PdfReader reader;
 
     public String pdfToString(String filePath) {
+        StringBuilder fullText = new StringBuilder();
         try {
             PdfReader reader = new PdfReader(filePath);
             PdfDocument pdfDoc = new PdfDocument(reader);
 
             // Costruisci un StringBuilder per accumulare il testo
-            StringBuilder fullText = new StringBuilder();
 
             // Estrai il testo da ogni pagina
             for (int i = 1; i <= pdfDoc.getNumberOfPages(); i++) {
@@ -30,19 +30,11 @@ public class CVParserIText
             // Chiudi il documento PDF
             pdfDoc.close();
 
-            // Stampa il testo completo estratto
-            System.out.println("Testo estratto dal PDF:");
-            System.out.println(fullText.toString());
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return filePath;
+        return fullText.toString();
     }
 
-
 }
-
-

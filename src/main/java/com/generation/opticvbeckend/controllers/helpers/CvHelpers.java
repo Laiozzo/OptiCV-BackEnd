@@ -27,10 +27,8 @@ public class CvHelpers
         Optional<UploadedFile> o = uploadedFileRepository.findById(id);
         if(o.isEmpty())
             return null;
-        String filePath = o.get().getFilePath();
-        String cv = parser.pdfToString(filePath);
 
-        return answerService.processQuestions(jobDescription, cv);
+        return answerService.processQuestions(jobDescription, o.get().getParsedContent());
     }
 
     public List<String> processLastFileCurrentUser(String jobDescription)

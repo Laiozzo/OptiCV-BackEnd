@@ -54,5 +54,6 @@ public class UploadedFile extends BaseEntity {
 
     public void setParsedContent(String parsedText)
     {
+        this.parsedContent = parsedText;
     }
 }

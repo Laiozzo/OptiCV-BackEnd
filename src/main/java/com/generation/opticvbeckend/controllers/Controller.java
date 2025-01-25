@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @RestController
 @RequestMapping("/api/users")
 public class Controller
@@ -41,7 +43,7 @@ public class Controller
 		daModificare.setSurname(modifyDto.getSurname());
 		daModificare.setUsername(modifyDto.getUsername());
 		daModificare.setEmail(modifyDto.getEmail());
-		daModificare.setDob(modifyDto.getDob());
+		daModificare.setDob(LocalDate.parse(modifyDto.getDob()));
 		daModificare.setGender(modifyDto.getGender());
 		daModificare.setHashedPassword(modifyDto.getPassword());
 

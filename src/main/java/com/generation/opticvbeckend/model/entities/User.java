@@ -2,6 +2,7 @@ package com.generation.opticvbeckend.model.entities;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
@@ -19,7 +20,7 @@ public class User extends BaseEntity
     private String gender;
     private LocalDate dob;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<UploadedFile> uploadedFiles = new ArrayList<>();
 
     public String getName() {

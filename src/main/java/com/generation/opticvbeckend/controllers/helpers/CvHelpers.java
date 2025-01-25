@@ -1,5 +1,6 @@
 package com.generation.opticvbeckend.controllers.helpers;
 
+import com.generation.opticvbeckend.automations.RequestData;
 import com.generation.opticvbeckend.configuration.LlamaApiClient;
 import com.generation.opticvbeckend.model.entities.UploadedFile;
 import com.generation.opticvbeckend.model.entities.User;
@@ -33,8 +34,7 @@ public class CvHelpers
 
     public List<String> processLastFileCurrentUser(String jobDescription)
     {
-        //User u = RequestData.getUser().utente;
-        User u = new User();
+        User u = RequestData.getUser();
         Long id = u.getUploadedFiles().getLast().getId();
         return processFile(id, jobDescription);
 

@@ -9,7 +9,7 @@ public class UserDtoReqReg
 	private String username;
 	private String password;
 	private String email;
-	private LocalDate dob;
+	private String dob;
 	private String gender;
 
 
@@ -61,12 +61,12 @@ public class UserDtoReqReg
 		this.surname = surname;
 	}
 
-	public LocalDate getDob()
+	public String getDob()
 	{
 		return dob;
 	}
 
-	public void setDob(LocalDate dob)
+	public void setDob(String dob)
 	{
 		this.dob = dob;
 	}

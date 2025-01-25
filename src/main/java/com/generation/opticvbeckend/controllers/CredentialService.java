@@ -13,6 +13,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -58,9 +59,10 @@ public class CredentialService
 		user.setGender(userDtoReqReg.getGender());
 		user.setName(userDtoReqReg.getName());
 		user.setSurname(userDtoReqReg.getSurname());
-		user.setDob(userDtoReqReg.getDob());
+		user.setDob(LocalDate.parse(userDtoReqReg.getDob()));
 
 		String passwordHashata = DigestUtils.md5Hex(userDtoReqReg.getPassword());
+
 		user.setHashedPassword(passwordHashata);
 
 		uRepo.save(user);

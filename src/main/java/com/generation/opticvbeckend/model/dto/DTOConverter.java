@@ -5,6 +5,8 @@ import com.generation.opticvbeckend.model.entities.User;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class DTOConverter
 {
@@ -35,7 +37,7 @@ public class DTOConverter
         user.setHashedPassword(passwordHashata);
         user.setEmail(dto.getEmail());
         user.setGender(dto.getGender());
-        user.setDob(dto.getDob());
+        user.setDob(LocalDate.parse(dto.getDob()));
         user.setName(dto.getName());
         user.setSurname(dto.getSurname());
         return user;

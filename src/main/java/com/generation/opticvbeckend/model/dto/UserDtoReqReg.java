@@ -1,7 +1,5 @@
 package com.generation.opticvbeckend.model.dto;
 
-import java.time.LocalDate;
-
 public class UserDtoReqReg
 {
 	private String name;

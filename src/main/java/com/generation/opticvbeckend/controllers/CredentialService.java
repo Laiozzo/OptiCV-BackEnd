@@ -88,4 +88,12 @@ public class CredentialService
 	{
 		return dtoConverter.converterInUserProfileDto(RequestData.getUser());
 	}
+
+	public UserProfileDto modifyUser(User daModificare)
+	{
+		String passwordHashata = DigestUtils.md5Hex(daModificare.getHashedPassword());
+
+		daModificare.setHashedPassword(passwordHashata);
+		return dtoConverter.converterInUserProfileDto(uRepo.save(daModificare));
+	}
 }

@@ -1,6 +1,5 @@
 package com.generation.opticvbeckend.controllers.helpers;
 
-import com.generation.opticvbeckend.model.dto.DTOConverter;
 import com.generation.opticvbeckend.model.dto.JobTypeDTO;
 import com.generation.opticvbeckend.model.entities.JobType;
 import com.generation.opticvbeckend.model.repositories.JobTypeRepository;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ControllerHelperImp implements ControllerHelper

@@ -1,6 +1,7 @@
 package com.generation.opticvbeckend.model.entities;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
@@ -14,7 +15,9 @@ public class User extends BaseEntity
 {
     private String name;
     private String surname;
+    @Column (unique=true)
     private String username;
+    @Column (unique=true)
     private String email;
     private String hashedPassword;
     private String gender;

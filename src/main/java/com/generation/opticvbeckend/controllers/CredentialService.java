@@ -62,7 +62,6 @@ public class CredentialService
 		user.setDob(LocalDate.parse(userDtoReqReg.getDob()));
 
 		String passwordHashata = DigestUtils.md5Hex(userDtoReqReg.getPassword());
-
 		user.setHashedPassword(passwordHashata);
 
 		uRepo.save(user);

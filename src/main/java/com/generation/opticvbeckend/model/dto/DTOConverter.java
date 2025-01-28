@@ -46,6 +46,7 @@ public class DTOConverter
     public com.generation.opticvbeckend.model.dto.UserProfileDto converterInUserProfileDto (User profile)
     {
         UserProfileDto userProfileDto = new UserProfileDto();
+        userProfileDto.setUsername(profile.getUsername());
         userProfileDto.setDob(profile.getDob().toString());
         userProfileDto.setEmail(profile.getEmail());
         userProfileDto.setName(profile.getName());

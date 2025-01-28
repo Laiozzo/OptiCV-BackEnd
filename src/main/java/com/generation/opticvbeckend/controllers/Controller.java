@@ -34,7 +34,7 @@ public class Controller
 
 
 	@PutMapping("/myprofile")
-	public User modify(@RequestBody UserDtoReqReg modifyDto)
+	public UserProfileDto modify(@RequestBody UserDtoReqReg modifyDto)
 	{
 		User daModificare = RequestData.getUser();
 		//fagli fare la modifica
@@ -46,7 +46,7 @@ public class Controller
 		daModificare.setGender(modifyDto.getGender());
 		daModificare.setHashedPassword(modifyDto.getPassword());
 
-		return userRepository.save(daModificare);
+		return credentialService.modifyUser(daModificare);
 	}
 
 	@DeleteMapping

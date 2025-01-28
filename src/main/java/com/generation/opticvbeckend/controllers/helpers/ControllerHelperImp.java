@@ -1,5 +1,6 @@
 package com.generation.opticvbeckend.controllers.helpers;
 
+import com.generation.opticvbeckend.model.dto.DTOConverterV2;
 import com.generation.opticvbeckend.model.dto.JobTypeDTO;
 import com.generation.opticvbeckend.model.entities.JobType;
 import com.generation.opticvbeckend.model.repositories.JobTypeRepository;
@@ -16,7 +17,7 @@ public class ControllerHelperImp implements ControllerHelper
     JobTypeRepository jobrepo;
 
     @Autowired
-    DTOConverter converter;
+    DTOConverterV2 converter;
 
     @Override
     public List<JobTypeDTO> getJobTypes() {

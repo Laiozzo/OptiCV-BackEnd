@@ -12,6 +12,7 @@ import com.generation.opticvbeckend.model.entities.User;
 import com.generation.opticvbeckend.model.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,6 +24,8 @@ public class Controller
 	CredentialService credentialService;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private JavaMailSender emailSender;
 
 	@PostMapping ("/register")
 	public void register (@RequestBody UserDtoReqReg registerDto) { credentialService.register(registerDto);

@@ -1,5 +1,6 @@
 package com.generation.opticvbeckend.model.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 import java.time.LocalDate;
@@ -9,7 +10,9 @@ public class User extends BaseEntity
 {
     private String name;
     private String surname;
+    @Column (unique=true)
     private String username;
+    @Column (unique=true)
     private String email;
     private String hashedPassword;
     private String gender;

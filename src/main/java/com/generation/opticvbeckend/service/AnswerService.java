@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,22 +26,12 @@ public class AnswerService {
     }
 
 
+
     public List<String> processQuestions(String jobDescription, String cvParse) {
 
-        String question2 = "Scannerizza il CV caricato e gli elementi all'interno e la job description salvata; mettili a paragone e crea un percentuale di rating che indichi quanto sono compatibili " + jobDescription;
-        String cv = "";
-
         List<String> questions = List.of(
-                "Con il CV: ", cvParse, " che ti ho dato, dammi una review generale",
-                question2,
-                "Dammi solo il rating finale",
-                "Dammi la compatibilità delle Hard-Skill",
-                "Dammi la compatibilità delle Soft Skill",
-                "Dammi la compatibilità del livello di formazione",
-                "Dammi la compatibilità del livello di esperienza lavorativa richiesto",
-                "Dammi la compatibilità sul l'inserimento delle informazioni di contatto personali",
-                "Dammi suggerimenti su come essere il perfetto candidato per questa posizione lavorativa",
-                "Dammi suggerimenti su come modificare il curriculum"
+                "Questo è il cv del candidato: "+ cvParse + "metti in relazione il cv con le richieste lavorative:" + jobDescription +
+                "Valuta il candidato per le sua Hard Skill, per le sue Soft Skill e dammi una recensione generale. Per ogni valutazione inizia a scrivere con Hard Skill:, Soft Skill:, Recensione:, Voto:"
         );
         List<Answer> answerList = new ArrayList<>();
         List<String> responses = new ArrayList<>();
@@ -63,7 +56,48 @@ public class AnswerService {
             answerRepository.save(answer);
         }
 
-        return responses;
+        Pattern  voto = Pattern.compile("Voto:.*" , Pattern.DOTALL);
+        Pattern recensione = Pattern.compile("Recensione:.*", Pattern.DOTALL);
+        Pattern softskill = Pattern.compile("Soft Skill:.*", Pattern.DOTALL);
+        Pattern hardskill = Pattern.compile("Hard Skill:.*", Pattern.DOTALL);
+
+        ArrayList<Pattern> regex = new ArrayList<>();
+        regex.add(voto);
+        regex.add(recensione);
+        regex.add(softskill);
+        regex.add(hardskill);
+
+        String var = responses.get(0);
+        List<String> res = new ArrayList<>();
+
+        for(Pattern p : regex) {
+            Matcher matcher = p.matcher(var);
+            if(matcher.find()) {
+                res.add(matcher.group());
+            }
+            var = matcher.replaceAll("");
+        }
+
+        Pattern number = Pattern.compile("\\d+");
+        Matcher matcher = number.matcher(res.get(0));
+        String percent = null;
+
+        Random rand = new Random();
+
+
+        if(matcher.find()) {
+            percent = matcher.group();
+            int i = Integer.parseInt(percent);
+            i = (i * 10) - rand.nextInt(10);
+            percent = String.valueOf(i);
+            res.set(0, percent);
+        }
+
+        for(String s : res) {
+            System.out.println(s);
+        }
+
+        return res;
     }
 }
 
